@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+            
+            <script>
+                function Fn(name){
+            this.name = name;
+            console.log(this);
+             return function(){}
+        }
+    
+    
+        let f = New(Fn,'xx'); // -> new Fn()
+    
+        console.log(f.constructor);
+        
+        function New (fn,...arg){
+            let obj = new Object; //实例
+            let callback = fn.call(obj,...arg); //把构造函数的this改成实例
+    
+            //使实例的原型链等于构造函数的原型
+            obj.__proto__ = fn.prototype;
+    
+            /*
+                要么是个对象类型，要么是个函数
+            */
+            if(callback !== null && typeof callback === 'object' || typeof callback === 'function'){
+                return callback;
+            }
+            return obj;
+        }
+        </script>
+    
+</body>
+</html>

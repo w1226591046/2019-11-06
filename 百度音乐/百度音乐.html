@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,
+			ul,
+			li {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.dd{
+				background:lightcoral;
+			}
+			.active{
+				background:skyblue
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="baidu.css" />
+	</head>
+
+<body>
+	<div class="wrap">
+		<div class="baidu">
+			<ul id="list">
+				<li>
+					<input type="checkbox"/>
+					<span>泡沫</span>
+					<span>邓紫棋</span>
+				</li>
+				<li>
+					<input type="checkbox"/>
+					<span>说爱你</span>
+					<span>蔡依林</span>
+				</li>
+				<li>
+					<input type="checkbox"/>
+					<span>稻香</span>
+					<span>周杰伦</span>
+				</li>
+				<li>
+					<input type="checkbox"/>
+					<span>我的梦</span>
+					<span>张靓颖</span>
+				</li>
+				<li>
+					<input type="checkbox"/>
+					<span>怎么说我不爱你</span>
+					<span>萧敬腾</span>
+				</li>
+				<li>
+					<input type="checkbox"/>
+					<span>无处安放</span>
+					<span>白若溪</span>
+				</li>
+			</ul>
+			<div class="select">
+				<span><input type="checkbox" id="all"/><span>全选</span></span>
+				<div class="others">
+					<span><em></em>收藏</span>
+					<span><em></em>添加</span>
+					<span><em></em>删除</span>
+				</div>
+			</div>
+		</div>
+	</div>
+<script>
+	/*
+		checkbox.checked   布尔值
+	*/
+
+		const lis = document.querySelectorAll('#list li');
+		const ipu = document.querySelectorAll('#list input')
+		let ary = [];
+		lis.forEach((ele,index)=>{
+			ary[index] = false;
+			if(index % 2){
+				ele.classList.add('dd')
+			}
+			ele.onmouseover = function(){
+				this.classList.add('active');
+			};
+			ele.onmouseout = function(){
+				if(!ipu[index].checked){
+					this.classList.remove('active');
+				}
+			}
+			ipu[index].onclick =function(){
+				ary[index] = this.checked;
+				all.checked = ary.every(item=>item);
+			}
+		})
+		all.onclick = function(){
+			ipu.forEach((ele,index)=>{
+				ele.checked = this.checked;
+				this.checked?lis[index].classList.add('active'):lis[index].classList.remove('active')
+				ary[index] = this.checked
+			})
+		}
+
+</script>
+</body>
+</html>

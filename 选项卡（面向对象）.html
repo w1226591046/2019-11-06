@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .active{
+            background: yellow;
+        }
+        #box div,#box2 div{
+            width:200px;
+            height:100px;
+            border:1px solid #000;
+            display: none;
+        }
+        #box div.show,#box2 div.show{
+            display: block;
+        }
+        </style>
+</head>
+<body>
+    <div id="box">
+        <button class="active" index="0">按钮一</button>
+        <button index="1">按钮二</button>
+        <button index="2">按钮三</button>
+        <div class="show">11111</div>
+        <div>22222</div>
+        <div>33333</div>
+       
+    </div>
+    
+    <script>
+      function Tab(id){
+        this.box = document.getElementById(id);
+        this.divs = this.box.querySelectorAll('div');
+        this.btns = this.box.querySelectorAll('button');
+        this.po = 0;
+      }
+
+       Tab.prototype.onc = function(){
+           const that = this;
+           this.btns.forEach((ele,index)=>{
+               ele.onclick = function(){
+                    that.zed(this,index)
+               }
+           })
+       }
+       Tab.prototype.zed = function(that,index){
+           this.btns[this.po].className = '';
+           this.divs[this.po].className = '';
+            that.className  = 'active';
+            this.divs[index].className = 'show';
+            this.po = index;
+       }
+            
+    
+      
+    
+       let aa = new Tab('box');
+       aa.onc();
+       
+    </script>
+</body>
+</html>
